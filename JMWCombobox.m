@@ -181,10 +181,10 @@
         [self setCurrentValue:[[self values] objectAtIndex:0]];
     }
     [self.currentValue drawInRect:CGRectMake(TEXT_LEFT, TEXT_TOP,
-                                    rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT,
-                                    rect.size.height - BORDER_WIDTH)
-                withFont:[UIFont fontWithName:FONT_NAME size:FONT_SIZE]];
-
+                                             rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT,
+                                             rect.size.height - BORDER_WIDTH)
+                         withFont:[UIFont fontWithName:FONT_NAME size:FONT_SIZE]];
+    
     CGGradientRelease(gradient), gradient = NULL;
     CGGradientRelease(arrow_blue_gradient), arrow_blue_gradient = NULL;
     CGGradientRelease(arrow_gray_gradient), arrow_gray_gradient = NULL;
@@ -200,7 +200,7 @@
 - (void) showPickerView
 {
     // Show our picker view!
-    CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT - 20;
+    CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT;
     // NOTE: The 20 is subtracted because of the top bar that has the clock.
     // If you're using this in a modal view, you may need to come up with a workaround.
     
@@ -211,7 +211,7 @@
     [self.pickerView setDataSource:self];
     [self.pickerView setDelegate:self];
     
-    [self.superview addSubview:self.pickerView];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.pickerView];
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:ANIMATION_LENGTH];
@@ -238,7 +238,6 @@
 {
     if (finished)
     {
-        NSLog(@"Finsihed!");
         [self.pickerView removeFromSuperview];
     }
 }
