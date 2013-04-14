@@ -19,6 +19,8 @@
 #define TEXT_LEFT 5.0f
 #define TEXT_TOP 6.0f
 
+#define ANIMATION_LENGTH 0.25
+
 #define PICKER_VIEW_HEIGHT 216.0f // This is fixed by Apple, and Stack Overflow reports some bugs can be introduced if it's changed.
 
 @implementation JMWCombobox
@@ -204,18 +206,41 @@
     
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     
-    self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY, screenWidth, PICKER_VIEW_HEIGHT)];
+    self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY + PICKER_VIEW_HEIGHT, screenWidth, PICKER_VIEW_HEIGHT)];
     [self.pickerView setShowsSelectionIndicator:YES];
     [self.pickerView setDataSource:self];
     [self.pickerView setDelegate:self];
+    
     [self.superview addSubview:self.pickerView];
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:ANIMATION_LENGTH];
+    CGAffineTransform transform = CGAffineTransformMakeTranslation(0, -PICKER_VIEW_HEIGHT);
+    self.pickerView.transform = transform;
+    [UIView commitAnimations];
 }
 
 - (void) hidePickerView
 {
     // Hide our picker view!
     [self.pickerView resignFirstResponder];
-    [self.pickerView removeFromSuperview];
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:ANIMATION_LENGTH];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(finishAnimation:finished:context:)];
+    CGAffineTransform transform = CGAffineTransformMakeTranslation(0, PICKER_VIEW_HEIGHT);
+    self.pickerView.transform = transform;
+    [UIView commitAnimations];
+}
+
+- (void) finishAnimation:(NSString *)animationID finished:(BOOL)finished context:(void *)context
+{
+    if (finished)
+    {
+        NSLog(@"Finsihed!");
+        [self.pickerView removeFromSuperview];
+    }
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
