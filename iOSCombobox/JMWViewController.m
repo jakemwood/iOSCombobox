@@ -23,6 +23,9 @@
     [combo setValues:@[@"Hello", @"World"]];
     [combo setCurrentValue:@"World"];
     [self.view addSubview:combo];
+    
+    [self setKeybc:[[BSKeyboardControls alloc] initWithFields:@[combo, self.randomText]]];
+    [self.keybc setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -31,4 +34,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyboardControls
+{
+    [[keyboardControls activeField] resignFirstResponder];
+}
+
+- (void)beginSelecting:(JMWCombobox *)combobox
+{
+    [self.keybc setActiveField:combobox];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self.keybc setActiveField:textField];
+}
 @end

@@ -22,10 +22,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="npo-gQ-WWx" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="34" id="5r7-5t-Z4Z"/>
-                            <constraint firstItem="npo-gQ-WWx" firstAttribute="top" secondItem="3" secondAttribute="top" constant="158" id="8We-Kn-68p"/>
+                            <constraint firstItem="npo-gQ-WWx" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="47" id="ACn-KU-I3W"/>
+                            <constraint firstItem="npo-gQ-WWx" firstAttribute="top" secondItem="3" secondAttribute="top" constant="156" id="IU5-wt-iDg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="randomText" destination="npo-gQ-WWx" id="9nu-EX-zeT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>

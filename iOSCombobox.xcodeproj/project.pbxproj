@@ -19,6 +19,7 @@
 		CAF59BDF171A515600FEACF7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAF59BDE171A515600FEACF7 /* Default-568h@2x.png */; };
 		CAF59BE2171A515600FEACF7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAF59BE0171A515600FEACF7 /* MainStoryboard.storyboard */; };
 		CAF59BE5171A515600FEACF7 /* JMWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF59BE4171A515600FEACF7 /* JMWViewController.m */; };
+		CAFC94E0171BB13A00917510 /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC94DF171BB06400917510 /* BSKeyboardControls.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		CAF59BE1171A515600FEACF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		CAF59BE3171A515600FEACF7 /* JMWViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JMWViewController.h; sourceTree = "<group>"; };
 		CAF59BE4171A515600FEACF7 /* JMWViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMWViewController.m; sourceTree = "<group>"; };
+		CAFC94DE171BB06400917510 /* BSKeyboardControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
+		CAFC94DF171BB06400917510 /* BSKeyboardControls.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +62,8 @@
 		CAF59BBC171A515600FEACF7 = {
 			isa = PBXGroup;
 			children = (
+				CAFC94DE171BB06400917510 /* BSKeyboardControls.h */,
+				CAFC94DF171BB06400917510 /* BSKeyboardControls.m */,
 				CAF59BCE171A515600FEACF7 /* iOSCombobox */,
 				CAF59BC7171A515600FEACF7 /* Frameworks */,
 				CAF59BC6171A515600FEACF7 /* Products */,
@@ -179,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAFC94E0171BB13A00917510 /* BSKeyboardControls.m in Sources */,
 				CAF59BD5171A515600FEACF7 /* main.m in Sources */,
 				CAF59BD9171A515600FEACF7 /* JMWAppDelegate.m in Sources */,
 				CAF59BE5171A515600FEACF7 /* JMWViewController.m in Sources */,
