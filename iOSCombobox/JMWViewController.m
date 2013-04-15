@@ -23,12 +23,32 @@
     [combo setValues:@[@"Hello", @"World"]];
     [combo setCurrentValue:@"World"];
     [self.view addSubview:combo];
+    
+    [self setKeyboardC:[[BSKeyboardControls alloc] initWithFields:@[combo, self.textField]]];
+    [[self keyboardC] setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyboardControls
+{
+    [keyboardControls.activeField resignFirstResponder];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSLog(@"Text field did begin editign!");
+    
+    [self.keyboardC setActiveField:textField];
+}
+
+- (void)beginSelecting:(JMWCombobox *)combobox
+{
+    [self.keyboardC setActiveField:combobox];
 }
 
 @end
