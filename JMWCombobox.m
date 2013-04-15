@@ -199,25 +199,28 @@
 
 - (void) showPickerView
 {
+    // Show our picker view!
     CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT;
     // NOTE: The 20 is subtracted because of the top bar that has the clock.
     // If you're using this in a modal view, you may need to come up with a workaround.
     
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    
     self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY + PICKER_VIEW_HEIGHT, screenWidth, PICKER_VIEW_HEIGHT)];
     [self.pickerView setShowsSelectionIndicator:YES];
     [self.pickerView setDataSource:self];
     [self.pickerView setDelegate:self];
     [self.pickerView selectRow:[self.values indexOfObject:[self currentValue]] inComponent:0 animated:NO];
-    /*
+    
     [[UIApplication sharedApplication].keyWindow addSubview:self.pickerView];
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:ANIMATION_LENGTH];
     CGAffineTransform transform = CGAffineTransformMakeTranslation(0, -PICKER_VIEW_HEIGHT);
     self.pickerView.transform = transform;
-    [UIView commitAnimations];*/
-    self.inputView = self.pickerView;
+    [UIView commitAnimations];
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:[self inputAccessoryView]];
 }
 
 - (void) hidePickerView
@@ -263,9 +266,14 @@
     [self setNeedsDisplay];
 }
 
-- (void)drawPlaceholderInRect:(CGRect)rect
+- (BOOL)canBecomeFirstResponder
 {
-    //stub
+    return YES;
+}
+
+- (BOOL)canResignFirstResponder
+{
+    return YES;
 }
 
 - (BOOL)becomeFirstResponder
@@ -280,7 +288,7 @@
         [self showPickerView];
         if ([[self delegate] respondsToSelector:@selector(beginSelecting:)])
         {
-//            [[self delegate] beginSelecting:self];
+            [[self delegate] beginSelecting:self];
         }
     }
     else
@@ -300,10 +308,5 @@
     [self setNeedsDisplay];
     
     return YES;
-}
-
-- (CGRect) caretRectForPosition:(UITextPosition *)position
-{
-    return CGRectZero;
 }
 @end

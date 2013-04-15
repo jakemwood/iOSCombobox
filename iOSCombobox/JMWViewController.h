@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BSKeyboardControls.h"
-#import "JMWCombobox.h"
 
-@interface JMWViewController : UIViewController <BSKeyboardControlsDelegate, UITextFieldDelegate, JMWComboboxDelegate>
-@property (strong, nonatomic) IBOutlet UITextField *textField;
-@property (strong, nonatomic) BSKeyboardControls *keyboardC;
+@interface JMWViewController : UIViewController
+
 @end

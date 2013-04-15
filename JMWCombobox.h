@@ -10,7 +10,7 @@
 
 @protocol JMWComboboxDelegate;
 
-@interface JMWCombobox : UITextField <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface JMWCombobox : UIControl <UIPickerViewDataSource, UIPickerViewDelegate>
 {
     BOOL active;
 }
@@ -18,7 +18,8 @@
 @property (nonatomic, strong) NSArray *values;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSString *currentValue;
-//@property (nonatomic, strong) id<JMWComboboxDelegate> delegate;
+@property (nonatomic, strong) UIView *inputAccessoryView;
+@property (nonatomic, strong) id<JMWComboboxDelegate> delegate;
 
 @end
 
