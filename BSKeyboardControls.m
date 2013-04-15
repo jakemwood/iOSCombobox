@@ -113,6 +113,10 @@
             {
                 [(UITextView *)field setInputAccessoryView:self];
             }
+            else if ([field isKindOfClass:[JMWCombobox class]])
+            {
+                [(JMWCombobox *)field setInputAccessoryView:self];
+            }
         }
         
         _fields = fields;

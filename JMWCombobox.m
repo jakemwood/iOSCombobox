@@ -25,12 +25,29 @@
 
 @implementation JMWCombobox
 
+- (void)initialize
+{
+    CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT;
+    // NOTE: The 20 is subtracted because of the top bar that has the clock.
+    // If you're using this in a modal view, you may need to come up with a workaround.
+    
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY, screenWidth, PICKER_VIEW_HEIGHT)];
+    [self.pickerView setShowsSelectionIndicator:YES];
+    [self.pickerView setDataSource:self];
+    [self.pickerView setDelegate:self];
+    [self.pickerView selectRow:[self.values indexOfObject:[self currentValue]] inComponent:0 animated:NO];
+    
+    self.inputView = self.pickerView;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         [self setBackgroundColor:[UIColor clearColor]];
+        [self initialize];
         active = NO;
     }
     return self;
@@ -41,6 +58,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        [self initialize];
         active = NO;
     }
     return self;
@@ -48,8 +66,6 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [super drawRect:rect];
-    
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextClearRect(ctx, rect);
     
@@ -214,12 +230,18 @@
     
     [[UIApplication sharedApplication].keyWindow addSubview:self.pickerView];
     
-    [UIView beginAnimations:nil context:nil];
+    [UIView beginAnimations:@"ShowPicker" context:nil];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(finishAnimation:finished:context:)];
     [UIView setAnimationDuration:ANIMATION_LENGTH];
     CGAffineTransform transform = CGAffineTransformMakeTranslation(0, -PICKER_VIEW_HEIGHT);
     self.pickerView.transform = transform;
     [UIView commitAnimations];
     
+    [[self inputAccessoryView] setFrame:CGRectMake(0.0f, pickerY - [[self inputAccessoryView] frame].size.height,
+                                                  [[self inputAccessoryView] frame].size.width,
+                                                   [[self inputAccessoryView] frame].size.height)];
+    [[self inputAccessoryView] setNeedsDisplay];
     [[UIApplication sharedApplication].keyWindow addSubview:[self inputAccessoryView]];
 }
 
@@ -228,7 +250,7 @@
     // Hide our picker view!
     [self.pickerView resignFirstResponder];
     
-    [UIView beginAnimations:nil context:nil];
+    [UIView beginAnimations:@"HidePicker" context:nil];
     [UIView setAnimationDuration:ANIMATION_LENGTH];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(finishAnimation:finished:context:)];
@@ -239,10 +261,11 @@
 
 - (void) finishAnimation:(NSString *)animationID finished:(BOOL)finished context:(void *)context
 {
-    if (finished)
+    NSLog(@"Animation finished: %@", animationID);
+    /*if (finished)
     {
         [self.pickerView removeFromSuperview];
-    }
+    }*/
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -280,21 +303,8 @@
 {
     [super becomeFirstResponder];
     
-    active = !active;
+    active = YES;
     [self setNeedsDisplay];
-    
-    if (active)
-    {
-        [self showPickerView];
-        if ([[self delegate] respondsToSelector:@selector(beginSelecting:)])
-        {
-            [[self delegate] beginSelecting:self];
-        }
-    }
-    else
-    {
-        [self hidePickerView];
-    }
     
     return YES;
 }
@@ -304,7 +314,6 @@
     [super resignFirstResponder];
     
     active = NO;
-    [self hidePickerView];
     [self setNeedsDisplay];
     
     return YES;

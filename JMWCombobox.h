@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UIKit/UIResponder.h>
 
 @protocol JMWComboboxDelegate;
 
@@ -18,8 +19,10 @@
 @property (nonatomic, strong) NSArray *values;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSString *currentValue;
-@property (nonatomic, strong) UIView *inputAccessoryView;
 @property (nonatomic, strong) id<JMWComboboxDelegate> delegate;
+
+@property (readwrite, strong) UIView *inputView;
+@property (readwrite, strong) UIView *inputAccessoryView;
 
 @end
 
