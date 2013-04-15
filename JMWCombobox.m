@@ -19,18 +19,18 @@
 #define TEXT_LEFT 5.0f
 #define TEXT_TOP 6.0f
 
-#define ANIMATION_LENGTH 0.25
-
 #define PICKER_VIEW_HEIGHT 216.0f // This is fixed by Apple, and Stack Overflow reports some bugs can be introduced if it's changed.
 
 @implementation JMWCombobox
+@synthesize values = _values;
+@synthesize currentValue = _currentValue;
 
+/***********************************************************
+ **  INITIALIZATION
+ **********************************************************/
 - (void)initialize
 {
     CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT;
-    // NOTE: The 20 is subtracted because of the top bar that has the clock.
-    // If you're using this in a modal view, you may need to come up with a workaround.
-    
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY, screenWidth, PICKER_VIEW_HEIGHT)];
     [self.pickerView setShowsSelectionIndicator:YES];
@@ -64,6 +64,9 @@
     return self;
 }
 
+/***********************************************************
+ **  DRAWING
+ **********************************************************/
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -206,66 +209,26 @@
     CGGradientRelease(arrow_gray_gradient), arrow_gray_gradient = NULL;
 }
 
-- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+/***********************************************************
+ **  DATA SOURCE FOR UIPICKERVIEW
+ **********************************************************/
+- (void)setValues:(NSArray *)values
 {
-    [super beginTrackingWithTouch:touch withEvent:event];
-    [self becomeFirstResponder];
-    return NO;
-}
-
-- (void) showPickerView
-{
-    // Show our picker view!
-    CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT;
-    // NOTE: The 20 is subtracted because of the top bar that has the clock.
-    // If you're using this in a modal view, you may need to come up with a workaround.
-    
-    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-    
-    self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY + PICKER_VIEW_HEIGHT, screenWidth, PICKER_VIEW_HEIGHT)];
-    [self.pickerView setShowsSelectionIndicator:YES];
-    [self.pickerView setDataSource:self];
-    [self.pickerView setDelegate:self];
-    [self.pickerView selectRow:[self.values indexOfObject:[self currentValue]] inComponent:0 animated:NO];
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:self.pickerView];
-    
-    [UIView beginAnimations:@"ShowPicker" context:nil];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(finishAnimation:finished:context:)];
-    [UIView setAnimationDuration:ANIMATION_LENGTH];
-    CGAffineTransform transform = CGAffineTransformMakeTranslation(0, -PICKER_VIEW_HEIGHT);
-    self.pickerView.transform = transform;
-    [UIView commitAnimations];
-    
-    [[self inputAccessoryView] setFrame:CGRectMake(0.0f, pickerY - [[self inputAccessoryView] frame].size.height,
-                                                  [[self inputAccessoryView] frame].size.width,
-                                                   [[self inputAccessoryView] frame].size.height)];
-    [[self inputAccessoryView] setNeedsDisplay];
-    [[UIApplication sharedApplication].keyWindow addSubview:[self inputAccessoryView]];
-}
-
-- (void) hidePickerView
-{
-    // Hide our picker view!
-    [self.pickerView resignFirstResponder];
-    
-    [UIView beginAnimations:@"HidePicker" context:nil];
-    [UIView setAnimationDuration:ANIMATION_LENGTH];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(finishAnimation:finished:context:)];
-    CGAffineTransform transform = CGAffineTransformMakeTranslation(0, PICKER_VIEW_HEIGHT);
-    self.pickerView.transform = transform;
-    [UIView commitAnimations];
-}
-
-- (void) finishAnimation:(NSString *)animationID finished:(BOOL)finished context:(void *)context
-{
-    NSLog(@"Animation finished: %@", animationID);
-    /*if (finished)
+    _values = values;
+    [_pickerView reloadAllComponents];
+    if ([_values indexOfObject:_currentValue] != NSNotFound)
     {
-        [self.pickerView removeFromSuperview];
-    }*/
+        [_pickerView selectRow:[_values indexOfObject:_currentValue] inComponent:0 animated:NO];
+    }
+}
+
+- (void)setCurrentValue:(NSString *)currentValue
+{
+    _currentValue = currentValue;
+    if ([_values indexOfObject:currentValue] != NSNotFound)
+    {
+        [_pickerView selectRow:[_values indexOfObject:currentValue] inComponent:0 animated:NO];
+    }
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -283,10 +246,23 @@
     return [self.values objectAtIndex:row];
 }
 
+/***********************************************************
+ **  UIPICKERVIEW DELEGATE COMMANDS
+ **********************************************************/
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     [self setCurrentValue:[self.values objectAtIndex:row]];
     [self setNeedsDisplay];
+}
+
+/***********************************************************
+ **  FIRST RESPONDER AND USER INTERFACE
+ **********************************************************/
+- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [super beginTrackingWithTouch:touch withEvent:event];
+    [self becomeFirstResponder];
+    return NO;
 }
 
 - (BOOL)canBecomeFirstResponder
@@ -305,6 +281,11 @@
     
     active = YES;
     [self setNeedsDisplay];
+    
+    if ([[self delegate] respondsToSelector:@selector(comboboxOpened:)])
+    {
+        [[self delegate] comboboxOpened:self];
+    }
     
     return YES;
 }

@@ -27,5 +27,5 @@
 @end
 
 @protocol JMWComboboxDelegate <NSObject>
-- (void) beginSelecting:(JMWCombobox *)combobox;
+- (void) comboboxOpened:(JMWCombobox *)combobox;
 @end

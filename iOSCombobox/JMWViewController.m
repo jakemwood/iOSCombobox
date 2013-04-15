@@ -40,7 +40,7 @@
     [[keyboardControls activeField] resignFirstResponder];
 }
 
-- (void)beginSelecting:(JMWCombobox *)combobox
+- (void)comboboxOpened:(JMWCombobox *)combobox
 {
     [self.keybc setActiveField:combobox];
 }
