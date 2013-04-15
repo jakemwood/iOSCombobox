@@ -218,6 +218,8 @@
     CGAffineTransform transform = CGAffineTransformMakeTranslation(0, -PICKER_VIEW_HEIGHT);
     self.pickerView.transform = transform;
     [UIView commitAnimations];
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:[self inputAccessoryView]];
 }
 
 - (void) hidePickerView
@@ -283,6 +285,10 @@
     if (active)
     {
         [self showPickerView];
+        if ([[self delegate] respondsToSelector:@selector(beginSelecting:)])
+        {
+            [[self delegate] beginSelecting:self];
+        }
     }
     else
     {
