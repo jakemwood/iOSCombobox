@@ -30,6 +30,10 @@
  **********************************************************/
 - (void)initialize
 {
+    active = NO;
+    
+    self.backgroundColor = [UIColor clearColor];
+    
     CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT;
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY, screenWidth, PICKER_VIEW_HEIGHT)];
@@ -45,10 +49,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        [self setBackgroundColor:[UIColor clearColor]];
         [self initialize];
-        active = NO;
     }
     return self;
 }
@@ -57,9 +58,16 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
         [self initialize];
-        active = NO;
+    }
+    return self;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self initialize];
     }
     return self;
 }
@@ -225,6 +233,7 @@
 - (void)setCurrentValue:(NSString *)currentValue
 {
     _currentValue = currentValue;
+    [self setNeedsDisplay];
     if ([_values indexOfObject:currentValue] != NSNotFound)
     {
         [_pickerView selectRow:[_values indexOfObject:currentValue] inComponent:0 animated:NO];
