@@ -21,6 +21,7 @@
     
     JMWCombobox *combo = [[JMWCombobox alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 200.f, 32.0f)];
     [combo setValues:@[@"Hello", @"World"]];
+    [combo setCurrentValue:@"World"];
     [self.view addSubview:combo];
 }
 
