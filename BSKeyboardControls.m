@@ -7,7 +7,7 @@
 //
 
 #import "BSKeyboardControls.h"
-#import "JMWCombobox.h"
+#import "iOSCombobox.h"
 
 @interface BSKeyboardControls ()
 @property (nonatomic, strong) UIToolbar *toolbar;
@@ -113,9 +113,9 @@
             {
                 [(UITextView *)field setInputAccessoryView:self];
             }
-            else if ([field isKindOfClass:[JMWCombobox class]])
+            else if ([field isKindOfClass:[iOSCombobox class]])
             {
-                [(JMWCombobox *)field setInputAccessoryView:self];
+                [(iOSCombobox *)field setInputAccessoryView:self];
             }
         }
         

@@ -26,7 +26,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BSKeyboardControls.h"
-#import "JMWCombobox.h"
+#import "iOSCombobox.h"
 
 @interface JMWViewController : UIViewController <BSKeyboardControlsDelegate, JMWComboboxDelegate, UITextFieldDelegate>
 

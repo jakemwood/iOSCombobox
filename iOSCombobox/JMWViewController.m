@@ -25,7 +25,7 @@
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import "JMWViewController.h"
-#import "JMWCombobox.h"
+#import "iOSCombobox.h"
 @interface JMWViewController ()
 
 @end
@@ -37,7 +37,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    JMWCombobox *combo = [[JMWCombobox alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 200.f, 32.0f)];
+    iOSCombobox *combo = [[iOSCombobox alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 200.f, 32.0f)];
     [combo setValues:@[@"Hello", @"World"]];
     [combo setCurrentValue:@"World"];
     [combo setDelegate:self];
@@ -58,7 +58,7 @@
     [[keyboardControls activeField] resignFirstResponder];
 }
 
-- (void)comboboxOpened:(JMWCombobox *)combobox
+- (void)comboboxOpened:(iOSCombobox *)combobox
 {
     [self.keybc setActiveField:combobox];
 }

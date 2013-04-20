@@ -24,7 +24,7 @@
 //  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "JMWCombobox.h"
+#import "iOSCombobox.h"
 
 #define BORDER_WIDTH 1.5f
 #define BORDER_OFFSET (BORDER_WIDTH / 2)
@@ -39,7 +39,7 @@
 
 #define PICKER_VIEW_HEIGHT 216.0f // This is fixed by Apple, and Stack Overflow reports some bugs can be introduced if it's changed.
 
-@implementation JMWCombobox
+@implementation iOSCombobox
 @synthesize values = _values;
 @synthesize currentValue = _currentValue;
 

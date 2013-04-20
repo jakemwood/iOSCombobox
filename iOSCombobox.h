@@ -29,7 +29,7 @@
 
 @protocol JMWComboboxDelegate;
 
-@interface JMWCombobox : UIControl <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface iOSCombobox : UIControl <UIPickerViewDataSource, UIPickerViewDelegate>
 {
     BOOL active;
 }
@@ -45,5 +45,5 @@
 @end
 
 @protocol JMWComboboxDelegate <NSObject>
-- (void) comboboxOpened:(JMWCombobox *)combobox;
+- (void) comboboxOpened:(iOSCombobox *)combobox;
 @end

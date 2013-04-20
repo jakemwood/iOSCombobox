@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA4F3857171B1FC40061BB88 /* JMWCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4F3856171B1FC40061BB88 /* JMWCombobox.m */; };
+		CA4F3857171B1FC40061BB88 /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4F3856171B1FC40061BB88 /* iOSCombobox.m */; };
 		CAF59BC9171A515600FEACF7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF59BC8171A515600FEACF7 /* UIKit.framework */; };
 		CAF59BCB171A515600FEACF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF59BCA171A515600FEACF7 /* Foundation.framework */; };
 		CAF59BCD171A515600FEACF7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF59BCC171A515600FEACF7 /* CoreGraphics.framework */; };
@@ -23,8 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CA4F3855171B1FC40061BB88 /* JMWCombobox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JMWCombobox.h; path = ../JMWCombobox.h; sourceTree = "<group>"; };
-		CA4F3856171B1FC40061BB88 /* JMWCombobox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JMWCombobox.m; path = ../JMWCombobox.m; sourceTree = "<group>"; };
+		CA4F3855171B1FC40061BB88 /* iOSCombobox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSCombobox.h; path = ../iOSCombobox.h; sourceTree = "<group>"; };
+		CA4F3856171B1FC40061BB88 /* iOSCombobox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iOSCombobox.m; path = ../iOSCombobox.m; sourceTree = "<group>"; };
 		CAF59BC5171A515600FEACF7 /* iOSCombobox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSCombobox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAF59BC8171A515600FEACF7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CAF59BCA171A515600FEACF7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,8 +91,8 @@
 		CAF59BCE171A515600FEACF7 /* iOSCombobox */ = {
 			isa = PBXGroup;
 			children = (
-				CA4F3855171B1FC40061BB88 /* JMWCombobox.h */,
-				CA4F3856171B1FC40061BB88 /* JMWCombobox.m */,
+				CA4F3855171B1FC40061BB88 /* iOSCombobox.h */,
+				CA4F3856171B1FC40061BB88 /* iOSCombobox.m */,
 				CAF59BD7171A515600FEACF7 /* JMWAppDelegate.h */,
 				CAF59BD8171A515600FEACF7 /* JMWAppDelegate.m */,
 				CAF59BE0171A515600FEACF7 /* MainStoryboard.storyboard */,
@@ -188,7 +188,7 @@
 				CAF59BD5171A515600FEACF7 /* main.m in Sources */,
 				CAF59BD9171A515600FEACF7 /* JMWAppDelegate.m in Sources */,
 				CAF59BE5171A515600FEACF7 /* JMWViewController.m in Sources */,
-				CA4F3857171B1FC40061BB88 /* JMWCombobox.m in Sources */,
+				CA4F3857171B1FC40061BB88 /* iOSCombobox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
