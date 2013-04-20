@@ -1,5 +1,5 @@
 //
-//  JMWCombobox.m
+//  iOSCombobox.m
 //  iOSCombobox
 //
 //  Created by Jake Wood on 4/14/13.
