@@ -28,7 +28,7 @@
 #import "BSKeyboardControls.h"
 #import "iOSCombobox.h"
 
-@interface JMWViewController : UIViewController <BSKeyboardControlsDelegate, JMWComboboxDelegate, UITextFieldDelegate>
+@interface JMWViewController : UIViewController <BSKeyboardControlsDelegate, iOSComboboxDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) BSKeyboardControls *keybc;
 @property (strong, nonatomic) IBOutlet UITextField *randomText;

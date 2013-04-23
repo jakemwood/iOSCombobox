@@ -280,6 +280,11 @@
 {
     [self setCurrentValue:[self.values objectAtIndex:row]];
     [self setNeedsDisplay];
+    
+    if ([self.delegate respondsToSelector:@selector(comboboxChanged:toValue:)])
+    {
+        [self.delegate comboboxChanged:self toValue:[self.values objectAtIndex:row]];
+    }
 }
 
 /***********************************************************
