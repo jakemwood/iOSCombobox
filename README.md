@@ -9,14 +9,14 @@ This is an iOS control that attempts to replicate the pretty `<select>` Safari w
 * Uses ARC.
 
 ## How to Use
-1. Import `JMWCombobox.h` and `JMWCombobox.m` into your project.
+1. Import `iOSCombobox.h` and `iOSCombobox.m` into your project.
 2. To programatically create a combo box, put something like this in your view controller initialization routine:
 
 	```
 	CGRect myRect = CGRectMake(10.0f, 10.0f, 300.f, 32.0f);
 	// Note: for now, 32 pixels is the recommended height of the control
 	
-	JMWCombobox *myCombo = [[JMWCombobx alloc] initWithFrame:myRect];
+	iOSCombobox *myCombo = [[iOSCombobox alloc] initWithFrame:myRect];
 	[myCombo setValues:@[@"Hello", "World"]];
 	[myCombo setCurrentValue:@"World"];
 	[self.view addSubview:combo];
@@ -34,7 +34,7 @@ method, you'll need to add an additional case to the "if" block you see within t
 ```
 else if ([field isKindOfClass:[JMWCombobox class]])
 {
-	[(JMWCombobox *)field setInputAccessoryView:self];
+	[(iOSCombobox *)field setInputAccessoryView:self];
 }
 ```
 
