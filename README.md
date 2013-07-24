@@ -20,7 +20,7 @@ This is an iOS control that attempts to replicate the pretty `<select>` Safari w
 	[myCombo setCurrentValue:@"World"];
 	[self.view addSubview:combo];
 	```
-3. Adding from the interface builder may also be possible.  I imagine it's as simple as adding a "view," then changing the type of the view to be JMWCombobox.  I'll be testing that soon.  I just wanted to get this readme written.
+3. Adding from the interface builder may also be possible.  I imagine it's as simple as adding a "view," then changing the type of the view to be iOSCombobox.  I'll be testing that soon.  I just wanted to get this readme written.
 
 ### Using with BSKeyboardControls
 If you're wanting to use this with BSKeyboardControls, you'll need to make a quick addition to their code.  I've included the modified versions of BSKeyboardControls.h and BSKeyboardControls.m in this repository.  Basically, in the…
@@ -31,7 +31,7 @@ If you're wanting to use this with BSKeyboardControls, you'll need to make a qui
 method, you'll need to add an additional case to the "if" block you see within the "for" loop to accomodate the fact that this combo box is not a text field or a text view.  You'll add…
 
 ```
-else if ([field isKindOfClass:[JMWCombobox class]])
+else if ([field isKindOfClass:[iOSCombobox class]])
 {
 	[(iOSCombobox *)field setInputAccessoryView:self];
 }
