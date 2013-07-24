@@ -14,7 +14,6 @@ This is an iOS control that attempts to replicate the pretty `<select>` Safari w
 
 	```
 	CGRect myRect = CGRectMake(10.0f, 10.0f, 300.f, 32.0f);
-	// Note: for now, 32 pixels is the recommended height of the control
 	
 	iOSCombobox *myCombo = [[iOSCombobox alloc] initWithFrame:myRect];
 	[myCombo setValues:@[@"Hello", "World"]];
