@@ -37,7 +37,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    iOSCombobox *combo = [[iOSCombobox alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 200.f, 32.0f)];
+    iOSCombobox *combo = [[iOSCombobox alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 200.f, 44.0f)];
     [combo setValues:@[@"Hello", @"World"]];
     [combo setCurrentValue:@"World"];
     [combo setDelegate:self];

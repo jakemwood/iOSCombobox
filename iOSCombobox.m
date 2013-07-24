@@ -33,9 +33,7 @@
 #define ARROW_HEIGHT 11.0f
 
 #define FONT_NAME @"Helvetica"
-#define FONT_SIZE 16.0f
 #define TEXT_LEFT 5.0f
-#define TEXT_TOP 6.0f
 
 #define PICKER_VIEW_HEIGHT 216.0f // This is fixed by Apple, and Stack Overflow reports some bugs can be introduced if it's changed.
 
@@ -225,10 +223,10 @@
     {
         [self setCurrentValue:[[self values] objectAtIndex:0]];
     }
-    [self.currentValue drawInRect:CGRectMake(TEXT_LEFT, TEXT_TOP,
+    [self.currentValue drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
                                              rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT,
                                              rect.size.height - BORDER_WIDTH)
-                         withFont:[UIFont fontWithName:FONT_NAME size:FONT_SIZE]];
+                         withFont:[UIFont fontWithName:FONT_NAME size:rect.size.height/2]];
     
     CGGradientRelease(gradient), gradient = NULL;
     CGGradientRelease(arrow_blue_gradient), arrow_blue_gradient = NULL;
